@@ -5,6 +5,11 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { resolve } from 'path'
 
+import unocss from 'unocss/vite'
+import { presetAttributify, presetUno, presetIcons } from 'unocss'
+import transformerDirective from '@unocss/transformer-directives'
+
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,7 +19,15 @@ export default defineConfig({
   }),
   Components({
     resolvers: [ElementPlusResolver()],
-  }),],
+  }), unocss({
+    rules: [
+
+    ],
+    presets: [presetAttributify(), presetUno(), presetIcons()],
+    transformers: [
+      transformerDirective(),
+    ],
+  })],
   resolve: {
     // 配置路径别名
     alias: {
@@ -24,13 +37,13 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8080/',
+        target: 'http://10.60.60.150:8081/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '') // 不可以省略rewrite
       }
     }
   }
-  
+
 })
 
 

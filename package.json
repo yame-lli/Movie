@@ -9,16 +9,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@splidejs/vue-splide": "^0.6.11",
+    "animate.css": "^4.1.1",
+    "axios": "^0.27.2",
     "element-plus": "^2.2.16",
+    "flv.js": "^1.6.2",
     "pinia": "^2.0.22",
-    "swiper": "^8.3.2",
     "vue": "^3.2.37",
-    "vue-router": "^4.1.5"
+    "vue-router": "^4.1.5",
+    "vue3-carousel": "^0.1.46"
   },
   "devDependencies": {
+    "@iconify-json/ic": "^1.1.9",
     "@types/node": "^18.7.15",
+    "@unocss/transformer-directives": "^0.45.22",
     "@vitejs/plugin-vue": "^3.1.0",
     "typescript": "^4.6.4",
+    "unocss": "^0.45.22",
     "unplugin-auto-import": "^0.11.2",
     "unplugin-vue-components": "^0.22.4",
     "vite": "^3.1.0",

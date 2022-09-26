@@ -1,19 +1,27 @@
 <template>
-  <el-card shadow="hover" :body-style="{ padding: '0px' }">
+  <el-card shadow="hover" :body-style="{ padding: '0px' }" @click="toMovieDetail">
     <img
-      src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+      src="https://p0.pipi.cn/mmdb/25bfd633807c7e11e539dd4f7b2672dcc27d1.jpg?imageView2/1/w/464/h/644"
       class="image"
     />
 
 
-    <div>
+    
        <slot name="bottom"></slot>
-    </div>
+  
    
   </el-card>
 </template>
 
 <script setup lang="ts">
+import {useRouter} from 'vue-router'
+
+const router = useRouter()
+const toMovieDetail = () =>{
+    router.push({
+        name:'MovieDetail'
+    })
+}
 
 
 </script>

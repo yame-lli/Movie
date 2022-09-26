@@ -3,7 +3,7 @@ import {useUserStore} from './user'
 
 export default function useStore() {
   return {
-    user: useUserStore(),
-    movie: useMovieStore(),
+    userStore: useUserStore(),
+    movieStore: useMovieStore(),
   }
 }

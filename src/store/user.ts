@@ -1,17 +1,36 @@
 import { defineStore } from "pinia"
+import { apiLogin } from '@/api/user'
+import { resolve } from "path"
+import { reject } from "lodash"
+
+type Res = {
+    code: number,
+    msg: string,
+    data: object
+}
+
 
 export const useUserStore = defineStore('User', {
-    state:()=>{
+    state: () => {
         return {
-            current:'user'
+            user: {}
         }
     },
-    //类似于computed 可以帮我们去修饰我们的值
-    getters:{
+
+    getters: {
 
     },
-    //可以操作异步 和 同步提交state
-    actions:{
 
+    actions: {
+        async reqLogin(data: any) {
+            let result = await apiLogin(data)
+            if (result.code == 200) {
+                this.user = result.data
+                return true
+            }
+            else {
+                return false                
+            }
+        }
     }
 })
