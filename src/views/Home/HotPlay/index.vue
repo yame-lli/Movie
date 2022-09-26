@@ -13,11 +13,44 @@
     <!-- 内容 -->
     <div class="hot-play-movie">
       <MovieCard class="hot-play-movie-item">
+        <template #info>
+          <div style="padding: 6px" class="hidden">
+            <span class="text-gray-600 text-xl">姜子牙</span>
+            <div class="flex justify-between">
+              <ul class="text-sm text-gray-400">
+                <li>主演:XXX</li>
+                <li>上映时间:xxx</li>
+              </ul>
+              <span class="text-orange-600 text-3xl">9.9</span>
+            </div>
+          </div>
+        </template>
+
         <template #bottom>
-          <el-button class="button w-full ">购票</el-button>
+          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购票</span>
         </template>
       </MovieCard>
-     
+      <MovieCard class="hot-play-movie-item">
+        <template #bottom>
+          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购票</span>
+        </template>
+      </MovieCard>
+      <MovieCard class="hot-play-movie-item">
+        <template #bottom>
+          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购票</span>
+        </template>
+      </MovieCard>
+      <MovieCard class="hot-play-movie-item">
+        <template #bottom>
+          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购票</span>
+        </template>
+      </MovieCard>
+      <MovieCard class="hot-play-movie-item">
+        <template #bottom>
+          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购票</span>
+        </template>
+      </MovieCard>
+
 
     </div>
   </div>

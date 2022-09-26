@@ -11,6 +11,7 @@ import transformerDirective from '@unocss/transformer-directives'
 
 
 
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(),
@@ -19,12 +20,14 @@ export default defineConfig({
   }),
   Components({
     resolvers: [ElementPlusResolver()],
-  }), unocss({
+  }),
+  unocss({
     rules: [
 
     ],
     presets: [presetAttributify(), presetUno(), presetIcons()],
     transformers: [
+ 
       transformerDirective(),
     ],
   })],

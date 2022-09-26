@@ -11,7 +11,6 @@
       <el-menu-item index="4" @click="toNews">资讯</el-menu-item>
 
       <!-- 搜索 -->
-
       <el-input v-model="input2" class="search" placeholder="Please Input" :suffix-icon="Search" type="text" />
 
       <!-- 头像 -->
@@ -38,7 +37,6 @@ import useStore from '@/store/index'
 const { userStore } = useStore()
 
 const user:any = toRaw (userStore.user)
-console.log(Object.keys(user).length);
 
 
 
