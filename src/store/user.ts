@@ -1,5 +1,5 @@
 import { defineStore } from "pinia"
-import { apiLogin } from '@/api/user'
+import { apiLogin ,apiRegister } from '@/api/user'
 import { resolve } from "path"
 import { reject } from "lodash"
 
@@ -24,6 +24,17 @@ export const useUserStore = defineStore('User', {
     actions: {
         async reqLogin(data: any) {
             let result = await apiLogin(data)
+            if (result.code == 200) {
+                this.user = result.data
+                return true
+            }
+            else {
+                return false                
+            }
+        },
+
+        async reqRegister(data: any) {
+            let result = await apiRegister(data)
             if (result.code == 200) {
                 this.user = result.data
                 return true

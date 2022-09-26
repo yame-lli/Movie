@@ -16,7 +16,7 @@ export const apiLogin = (data:any)=> {
 
 export const apiRegister = (data:any) => {
     return serve({
-        url: '/login',
+        url: '/register',
         method: 'POST',
         params: data
     })

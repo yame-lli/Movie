@@ -18,10 +18,10 @@
       <el-sub-menu index="6" class="avatar">
         <template #title>
           <div>
-            <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+            <el-avatar :src="`data:image/jpg;base64,`+ user.avatar" />
           </div>
         </template>
-        <el-menu-item index="6-1">登录/注册</el-menu-item>
+        <el-menu-item index="6-1" v-if="Object.keys(user).length==0">登录/注册</el-menu-item>
         <el-menu-item index="6-2">个人中心</el-menu-item>
         <el-menu-item index="6-3">退出登录</el-menu-item>
       </el-sub-menu>
@@ -30,9 +30,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { UserFilled, Search } from "@element-plus/icons-vue";
-import { useRouter } from "vue-router";
+import { ref,toRaw } from "vue";
+import { Search } from "@element-plus/icons-vue";
+import { useRouter, useRoute } from "vue-router";
+import useStore from '@/store/index'
+
+const { userStore } = useStore()
+
+const user:any = toRaw (userStore.user)
+console.log(Object.keys(user).length);
+
+
+
+
+
+
+
 const activeIndex = ref("1");
 const input2 = ref("");
 const handleSelect = (key: string, keyPath: string[]) => {
@@ -40,6 +53,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
 };
 
 const router = useRouter()
+const route = useRoute()
 const toMovie = () => {
   router.push({
     name: 'Movie'
@@ -66,9 +80,9 @@ const toNews = () => {
 
 <style scoped>
 .header {
-  
-  width:100%;
-  left:50%;
+
+  width: 100%;
+  left: 50%;
   transform: translateX(-50%);
   height: 74px;
   position: fixed;

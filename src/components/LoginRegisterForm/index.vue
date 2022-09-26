@@ -17,12 +17,13 @@
                 :prop="item.field" :class="itemStyle">
                 <el-input v-if="item.type==='input'||'password'" :show-password="item.type === 'password'"
                     :modelValue="modelValue[`${item.field}`]" @update:modelValue=" valueChange($event,item.field)" />
-
-
             </el-form-item>
 
+            <el-form-item class="flex mt-6">
+                <el-button type="primary" @click="submitForm(ruleFormRef)" class="flex-1">Submit</el-button>
+                <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
+            </el-form-item>
             <slot name="bottom"></slot>
-
 
         </el-form>
     </el-card>
@@ -32,27 +33,28 @@
   
 <script setup lang="ts">
 import bg2 from "@/assets/bg2.jpg"
-import { reactive, ref } from "vue";
-import type { FormInstance } from "element-plus";
-
+import { reactive, ref } from "vue"
+import type { FormRules, FormInstance } from 'element-plus'
+import { useRouter ,useRoute} from 'vue-router'
+import { ElNotification } from 'element-plus'
+import useStore from '@/store/index'
 import { IForm } from './type'
 
-type props = {
+
+type Props = {
     config: IForm
     itemStyle?: string
     formStyle?: string
     modelValue: any
- 
 }
 
-defineProps<props>()
+let props=defineProps<Props>()
 
 const emit = defineEmits(['update:modelValue'])
 
 const valueChange = (value: string, key: string) => {
-    emit('update:modelValue', value, key,ruleFormRef)
-    console.log(value, key,ruleFormRef);
-
+    emit('update:modelValue', value, key)
+    console.log(value, key);
 }
 
 
@@ -60,11 +62,81 @@ const ruleFormRef = ref<FormInstance>();
 console.log(ruleFormRef);
 
 
+const { userStore } = useStore()
 
-defineExpose({
-    ruleFormRef
-})
+const router = useRouter()
+const route = useRoute()
 
+
+
+const submitForm = (formEl: FormInstance | undefined) => {
+    console.log(formEl);
+
+    if (!formEl) return;
+
+    formEl.validate((valid) => {
+        if (valid) {
+            console.log("submit!");
+           if(route.path.includes('login')){
+            userStore.reqLogin(props.modelValue).then(
+                (flag: boolean) => {
+                    if (flag) {
+                        router.push({
+                            name: 'Home'
+                        })
+                        ElNotification({
+                            title: 'Success',
+                            message: '登录成功',
+                            type: 'success',
+                            duration: 3000
+                        })
+                    }
+                    else {
+                        ElNotification({
+                            title: 'Error',
+                            message: '登录失败',
+                            type: 'error',
+                        })
+                    }
+                }
+            )
+           }
+           else if(route.path.includes('register')){
+            userStore.reqRegister(props.modelValue).then(
+                (flag: boolean) => {
+                    if (flag) {
+                        router.push({
+                            name: 'Home'
+                        })
+                        ElNotification({
+                            title: 'Success',
+                            message: '注册成功',
+                            type: 'success',
+                            duration: 3000
+                        })
+                    }
+                    else {
+                        ElNotification({
+                            title: 'Error',
+                            message: '注册失败',
+                            type: 'error',
+                        })
+                    }
+                }
+            )
+           }
+
+        } else {
+            console.log("error submit!");
+            return false;
+        }
+    });
+};
+
+const resetForm = (formEl: FormInstance | undefined) => {
+    if (!formEl) return;
+    formEl.resetFields();
+};
 
 
 
