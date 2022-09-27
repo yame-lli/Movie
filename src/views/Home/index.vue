@@ -1,6 +1,6 @@
 <template>
    <Header></Header>
-  <div class="home p-74px">
+  <div class=" pt-74px">
     <router-view></router-view>
   </div>
 </template>

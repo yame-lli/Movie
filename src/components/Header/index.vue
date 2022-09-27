@@ -17,29 +17,35 @@
       <el-sub-menu index="6" class="avatar">
         <template #title>
           <div>
-            <el-avatar :src="`data:image/jpg;base64,`+ user.avatar" />
+            <el-avatar :src="avatar" />
           </div>
         </template>
-        <el-menu-item index="6-1" v-if="Object.keys(user).length==0">登录/注册</el-menu-item>
-        <el-menu-item index="6-2">个人中心</el-menu-item>
-        <el-menu-item index="6-3">退出登录</el-menu-item>
+        <el-menu-item index="6-1" v-if="Object.keys(user).length==0" @click="toLogin">登录/注册</el-menu-item>
+        <el-menu-item index="6-2" v-if="Object.keys(user).length!=0">个人中心</el-menu-item>
+        <el-menu-item index="6-3" @click="exit" v-if="Object.keys(user).length!=0">退出登录</el-menu-item>
       </el-sub-menu>
     </el-menu>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref,toRaw } from "vue";
+import { ref, toRaw, computed } from "vue";
 import { Search } from "@element-plus/icons-vue";
 import { useRouter, useRoute } from "vue-router";
 import useStore from '@/store/index'
 
 const { userStore } = useStore()
 
-const user:any = toRaw (userStore.user)
+const user: any = userStore.user
 
-
-
+let avatar = computed(() => {
+  if (user.avatar) {
+    return `data:image/jpg;base64,` + user.avatar
+  }
+  else {
+    return 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png'
+  }
+})
 
 
 
@@ -73,6 +79,19 @@ const toNews = () => {
     name: 'News'
   })
 }
+
+const toLogin =()=>{
+  router.push({
+    name: 'Login'
+  })
+}
+
+const exit = (): void => {
+  userStore.$reset()
+  localStorage.removeItem('pinia-User')
+
+}
+
 
 </script>
 

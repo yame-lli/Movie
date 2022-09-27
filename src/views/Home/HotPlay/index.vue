@@ -11,45 +11,121 @@
     </div>
 
     <!-- 内容 -->
-    <div class="hot-play-movie">
-      <MovieCard class="hot-play-movie-item">
+    <div class="hot-play-movie p-2 grid grid-cols-4 gap-12 justify-center">
+      <MovieCard class="hot-play-movie-item  relative transform hover:scale-105" shadow="hover">
         <template #info>
-          <div style="padding: 6px" class="hidden">
-            <span class="text-gray-600 text-xl">姜子牙</span>
-            <div class="flex justify-between">
-              <ul class="text-sm text-gray-400">
-                <li>主演:XXX</li>
-                <li>上映时间:xxx</li>
-              </ul>
-              <span class="text-orange-600 text-3xl">9.9</span>
+          <div  class="  bg-gradient-to-t from-black absolute bottom-36px w-100% z-999 rounded-t-sm h-20%">
+            <div class="flex justify-between items-center absolute bottom-0 w-100% px-2">
+              <span class="text-white  font-medium">姜子牙</span>
+              <span class="text-orange-600 text-lg">9.9</span>
             </div>
           </div>
         </template>
 
         <template #bottom>
-          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购票</span>
+          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购 票</span>
         </template>
       </MovieCard>
-      <MovieCard class="hot-play-movie-item">
+      
+      <MovieCard class="hot-play-movie-item  relative transform hover:scale-105" shadow="hover">
+        <template #info>
+          <div  class="  bg-gradient-to-t from-black absolute bottom-36px w-100% z-999 rounded-t-sm h-20%">
+            <div class="flex justify-between items-center absolute bottom-0 w-100% px-2">
+              <span class="text-white  font-medium">姜子牙</span>
+              <span class="text-orange-600 text-lg">9.9</span>
+            </div>
+          </div>
+        </template>
+
         <template #bottom>
-          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购票</span>
+          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购 票</span>
         </template>
       </MovieCard>
-      <MovieCard class="hot-play-movie-item">
+      <MovieCard class="hot-play-movie-item  relative transform hover:scale-105" shadow="hover">
+        <template #info>
+          <div  class="  bg-gradient-to-t from-black absolute bottom-36px w-100% z-999 rounded-t-sm h-20%">
+            <div class="flex justify-between items-center absolute bottom-0 w-100% px-2">
+              <span class="text-white  font-medium">姜子牙</span>
+              <span class="text-orange-600 text-lg">9.9</span>
+            </div>
+          </div>
+        </template>
+
         <template #bottom>
-          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购票</span>
+          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购 票</span>
         </template>
       </MovieCard>
-      <MovieCard class="hot-play-movie-item">
+      <MovieCard class="hot-play-movie-item  relative transform hover:scale-105" shadow="hover">
+        <template #info>
+          <div  class="  bg-gradient-to-t from-black absolute bottom-36px w-100% z-999 rounded-t-sm h-20%">
+            <div class="flex justify-between items-center absolute bottom-0 w-100% px-2">
+              <span class="text-white  font-medium">姜子牙</span>
+              <span class="text-orange-600 text-lg">9.9</span>
+            </div>
+          </div>
+        </template>
+
         <template #bottom>
-          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购票</span>
+          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购 票</span>
         </template>
       </MovieCard>
-      <MovieCard class="hot-play-movie-item">
+      <MovieCard class="hot-play-movie-item  relative transform hover:scale-105" shadow="hover">
+        <template #info>
+          <div  class="  bg-gradient-to-t from-black absolute bottom-36px w-100% z-999 rounded-t-sm h-20%">
+            <div class="flex justify-between items-center absolute bottom-0 w-100% px-2">
+              <span class="text-white  font-medium">姜子牙</span>
+              <span class="text-orange-600 text-lg">9.9</span>
+            </div>
+          </div>
+        </template>
+
         <template #bottom>
-          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购票</span>
+          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购 票</span>
         </template>
       </MovieCard>
+      <MovieCard class="hot-play-movie-item  relative transform hover:scale-105" shadow="hover">
+        <template #info>
+          <div  class="  bg-gradient-to-t from-black absolute bottom-36px w-100% z-999 rounded-t-sm h-20%">
+            <div class="flex justify-between items-center absolute bottom-0 w-100% px-2">
+              <span class="text-white  font-medium">姜子牙</span>
+              <span class="text-orange-600 text-lg">9.9</span>
+            </div>
+          </div>
+        </template>
+
+        <template #bottom>
+          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购 票</span>
+        </template>
+      </MovieCard>
+      <MovieCard class="hot-play-movie-item  relative transform hover:scale-105" shadow="hover">
+        <template #info>
+          <div  class="  bg-gradient-to-t from-black absolute bottom-36px w-100% z-999 rounded-t-sm h-20%">
+            <div class="flex justify-between items-center absolute bottom-0 w-100% px-2">
+              <span class="text-white  font-medium">姜子牙</span>
+              <span class="text-orange-600 text-lg">9.9</span>
+            </div>
+          </div>
+        </template>
+
+        <template #bottom>
+          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购 票</span>
+        </template>
+      </MovieCard>
+      <MovieCard class="hot-play-movie-item  relative transform hover:scale-105" shadow="hover">
+        <template #info>
+          <div  class="  bg-gradient-to-t from-black absolute bottom-36px w-100% z-999 rounded-t-sm h-20%">
+            <div class="flex justify-between items-center absolute bottom-0 w-100% px-2">
+              <span class="text-white  font-medium">姜子牙</span>
+              <span class="text-orange-600 text-lg">9.9</span>
+            </div>
+          </div>
+        </template>
+
+        <template #bottom>
+          <span class="block text-center color-red-500 p-2 hover:bg-red-600 hover:color-white">购 票</span>
+        </template>
+      </MovieCard>
+     
 
 
     </div>
@@ -89,16 +165,7 @@ import MovieCard from "@/components/MovieCard/index.vue";
   vertical-align: text-bottom;
 }
 
-.hot-play-movie {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 
-.hot-play-movie-item {
-  width: 24%;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-}
+
+
 </style>

@@ -25,7 +25,7 @@ const use = userStore()
   justify-content: center;
 }
 
-.home {
+.home  {
   max-width: 1200px;
   margin: 0 auto;
 }

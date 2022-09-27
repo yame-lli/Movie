@@ -26,7 +26,6 @@ const piniaPlugin = (option: Option) => {
 
         })
 
-
         return {
             ...data
         }

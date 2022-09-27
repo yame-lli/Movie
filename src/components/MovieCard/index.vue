@@ -1,7 +1,7 @@
 <template>
-  <el-card shadow="hover" :body-style="{ padding: '0px' }" @click="toMovieDetail">
+  <el-card shadow="hover"  :body-style="{ padding: '0px' }" @click="toMovieDetail">
     <img src="https://p0.pipi.cn/mmdb/25bfd633807c7e11e539dd4f7b2672dcc27d1.jpg?imageView2/1/w/464/h/644"
-      class="image" />
+      class="image " />
 
     <slot name="info"></slot>
 
@@ -27,7 +27,7 @@ const toMovieDetail = () => {
 <style scoped>
 .el-card {
   box-sizing: border-box;
-
+  @apply duration-50 transition 
 }
 
 .image {
