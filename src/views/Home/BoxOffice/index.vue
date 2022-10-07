@@ -2,7 +2,7 @@
   <div class="box-office">
     <Rank :data="data" :title="title">
       <template #detail="scope">
-        <span class="rank-detail" >{{scope.rankDetail}}</span>
+        <span class="rank-detail">{{ scope.rankDetail }} 亿</span>
       </template>
     </Rank>
   </div>
@@ -11,36 +11,36 @@
 <script setup lang="ts">
 import Rank from "@/components/Rank/index.vue";
 import { ref } from "vue";
+import useStore from '@/store/index';
+import { } from '@/api/movie'
+
 type boxOffice = {
   rankName: string;
   rankDetail: string;
 };
 
-let data = ref<boxOffice[]>();
+let data = ref<boxOffice[]>([]);
 const title = ref<string>("今日票房");
 
-data.value = [
-  {
-    rankName: "隐入尘世",
-    rankDetail: "123.33万",
-  },
-  {
-    rankName: "隐入尘世",
-    rankDetail: "123.33万",
-  },
-  {
-    rankName: "隐入尘世",
-    rankDetail: "123.33万",
-  },
-  {
-    rankName: "隐入尘世",
-    rankDetail: "123.33万",
-  },
-  {
-    rankName: "隐入尘世",
-    rankDetail: "123.33万",
-  },
-];
+
+
+const { movieStore } = useStore()
+
+movieStore.$subscribe(
+  () => {
+    movieStore.hotPlayList.slice(0, 5).forEach((item: any) => {
+      if(data.value.length==5){
+        return
+      }
+      data.value.push({ rankName: item.movieCName, rankDetail: item.movieBoxOffice })
+    });
+
+  }
+)
+
+
+
+
 </script>
 
 <style scoped>

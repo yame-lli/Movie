@@ -1,8 +1,8 @@
 <template>
     <!-- 轮播图 -->
     <el-carousel trigger="click" height="300px" class="max-w-1200px mx-auto">
-        <el-carousel-item v-for="item in 4" :key="item">
-            <img class="w-full" src="@/assets/313649.jpg" alt="">
+        <el-carousel-item v-for="item in carouselImg" :key="item">
+            <img class="w-full" :src="item" alt="">
         </el-carousel-item>
     </el-carousel>
     <!-- 正在热播 -->
@@ -26,6 +26,20 @@ import ToBePlay from "./ToBePlay/index.vue";
 import BoxOffice from "./BoxOffice/index.vue";
 import HotCinema from "./HotCinema/index.vue";
 import HotNews from "./HotNews/index.vue";
+import { apiGetCarouselImg } from "@/api/movie";
+import { ref } from "vue";
+
+let carouselImg = ref<string[]>([])
+apiGetCarouselImg().then((result)=>{
+  if(result.code == 200){
+    result.data.forEach((item:any)=>{
+      carouselImg.value.push(`data:image/jpg;base64,`+item.movieImg)
+    })
+  }
+})
+
+
+
 </script>
 
 <style scoped>

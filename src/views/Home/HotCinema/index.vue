@@ -1,6 +1,6 @@
 <template>
   <div class="hot-cinema">
-    <Rank :title="title" :data="data">
+    <Rank v-if="data" :title="title" :data="data">
       <template #detail="scope">
         <el-rate
           v-model="scope.rankDetail"
@@ -16,37 +16,32 @@
 <script setup lang="ts">
 import Rank from "@/components/Rank/index.vue";
 import { ref } from "vue";
+import { apiSelectCinemaByScore } from "@/api/cinema";
+
 
 type hotCinema = {
   rankName: string;
-  rankDetail: string;
+  rankDetail: number;
 };
 
-let data = ref<hotCinema[]>();
+let data = ref<hotCinema[]>([]);
 const title = ref<string>("热门影院");
 
-data.value = [
-  {
-    rankName: "大地影院",
-    rankDetail: "5",
-  },
-  {
-    rankName: "大地影院",
-    rankDetail: "4",
-  },
-  {
-    rankName: "大地影院",
-    rankDetail: "3",
-  },
-  {
-    rankName: "大地影院",
-    rankDetail: "2",
-  },
-  {
-    rankName: "大地影院",
-    rankDetail: "1.5",
-  },
-];
+apiSelectCinemaByScore().then((result)=>{
+  if(result.code == 200){
+    result.data.slice(0,5).forEach( (item:any) => {
+      
+      
+      data?.value?.push({rankName:item.cinemaName,rankDetail:item.cinemaScore /2})
+ 
+      
+    });
+  }
+})
+
+
+
+
 </script>
 
 <style scoped>

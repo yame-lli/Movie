@@ -1,8 +1,10 @@
 <template>
   <div class="movie">
     <div class="movie-nav">
-      <span>正在热映<span class="movie-nav-first"></span></span>
-      <span>即将上映<span class="movie-nav-second"></span></span>
+      <span @click="toHotPlayList">正在热映<span class="movie-nav-first"
+          v-if="route.path.includes('hotplaylist')"></span></span>
+      <span @click="toBePlayList">即将上映<span class="movie-nav-second"
+          v-if="route.path.includes('tobeplaylist')"></span></span>
     </div>
 
     <div class="movieType">
@@ -10,28 +12,7 @@
       <div class="type">
         <span>类型：</span>
         <ul class="type-list">
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
-          <li><a href="#">悬疑</a></li>
+          <li v-for="item in type"><a href="#">{{ item }}</a></li>
         </ul>
       </div>
 
@@ -94,7 +75,7 @@
     </div>
 
     <!-- sort -->
-    <div class="sort">
+    <div class="sort" v-if="route.path.includes('hotplaylist')">
       <el-radio-group v-model="radio">
         <el-radio :label="1">按热门排序</el-radio>
         <el-radio :label="2">按时间排序</el-radio>
@@ -102,21 +83,68 @@
       </el-radio-group>
     </div>
 
-    <HotPlayList></HotPlayList>
 
-    
-
-
-
-    <!-- <router-view></router-view> -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script setup lang="ts">
-import HotPlayList from "./HotPlayList/index.vue";
-import { ref } from "vue";
+
+import { ref, watch } from "vue";
+import { useRoute, useRouter } from 'vue-router'
+import useStore from '@/store'
+
+const route = useRoute()
+const router = useRouter()
+
+const toHotPlayList = () => {
+  router.push({
+    name: 'HotPlayList'
+  })
+}
+
+const toBePlayList = () => {
+  router.push({
+    name: 'ToBePlayList'
+  })
+}
+
+const type = ref<string[]>([
+  '动作',
+  '科幻',
+  '冒险',
+  '奇幻',
+  '荒诞',
+  '喜剧',
+  '悬疑',
+  '动画',
+  '爱情',
+  '剧情',
+  '推理',
+  '犯罪',
+  '恐怖',
+  '惊悚',
+  '战争',
+  '历史',
+  '青春',
+  '家庭'])
+
+
 
 const radio = ref(1);
+const { movieStore } = useStore()
+watch(radio, (newValue) => {
+  if (newValue == 1) {
+    movieStore.reqHotPlayList()
+  }
+  else if (newValue == 2) {
+    movieStore.reqSortHotPlayByTimeList()
+  }
+  else {
+    movieStore.reqSortHotPlayByEvaluateList()
+  }
+})
+
 </script>
 
 <style scoped>
@@ -130,7 +158,7 @@ const radio = ref(1);
   align-items: center;
 }
 
-.movie-nav > span {
+.movie-nav>span {
   box-sizing: border-box;
   margin: 0 30px;
   height: 100%;
@@ -163,9 +191,10 @@ const radio = ref(1);
   border-bottom: 1px solid rgb(238, 238, 238);
   padding: 10px 0;
 }
-.type > span,
-.area > span,
-.year > span {
+
+.type>span,
+.area>span,
+.year>span {
   width: 70px;
   margin-top: 5px;
 }
@@ -177,6 +206,7 @@ const radio = ref(1);
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .type-list li,
 .area-list li,
 .year-list li {

@@ -2,10 +2,15 @@
     <div>
         <div class="h-300px " :style="`background-image:url(${bg})`">
             <div class="flex h-300px items-center max-w-1200px mx-auto justify-center">
-                <div class="text-white mr-40">
-                    <div class="text-3xl">CGV影城（K11 4DX店）</div>
-                    <div class="my-2">天河区珠江东路6号K11购物艺术中心5F</div>
-                    <div>电话：18102598035/020-88835040</div>
+                
+                <div class="w-250px h-250px mr-30 bg-white flex justify-center items-center">
+                    <img class="w-240px h-240px" :src="`data:image/jpg;base64,` +cinema.cinemaImg" alt="">
+                </div>
+                
+                <div class="text-white mr-30">
+                    <div class="text-3xl">{{cinema.cinemaName}}</div>
+                    <div class="my-2">{{cinema.cinemaAddress}}</div>
+                    <div>  <el-rate v-model="cinema.cinemaScore" disabled text-color="#ff9900" /></div>
                 </div>
 
                 <div class="text-white">
@@ -118,14 +123,12 @@
 import bg from '@/assets/banner.png'
 
 import { ref, onMounted } from 'vue'
-
 import { defineComponent } from 'vue'
 import { Carousel, Pagination, Slide, Navigation } from 'vue3-carousel';
-
 import 'vue3-carousel/dist/carousel.css';
+import {apiSelectCinemaById} from '@/api/cinema'
 
-
-import {useRouter} from 'vue-router'
+import {useRouter,useRoute} from 'vue-router'
 
 const router = useRouter()
 const toPay = () =>{
@@ -134,13 +137,19 @@ const toPay = () =>{
     })
 }
 
+let cinema = ref({} as any)
+const route = useRoute()
+apiSelectCinemaById({id:route.query.id}).then((result)=>{
+    if(result.code==200){
+        cinema.value = result.data
+        cinema.value.cinemaScore = cinema.value.cinemaScore / 2
+    }
+})
 
 
 
 
 
-
-const value = ref(3.7)
 
 
 const activeIndex = ref('1')

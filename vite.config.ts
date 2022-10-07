@@ -42,7 +42,7 @@ export default defineConfig({
       '/api': {
         target: 'http://10.60.60.150:8081/',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '') // 不可以省略rewrite
+        rewrite: (path) => path.replace(/^\/api/, '') 
       }
     }
   }

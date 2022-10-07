@@ -42,7 +42,6 @@ const toRegister = ()=>{
 
 onMounted(() => {
 
-    console.log();
 })
 
 

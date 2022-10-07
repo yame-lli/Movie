@@ -6,6 +6,7 @@ import { createPinia } from 'pinia'
 import piniaPlugin from './piniaPlugin'
 import 'uno.css'
 import "element-plus/theme-chalk/el-notification.css";
+import "element-plus/theme-chalk/el-message.css";
 import 'animate.css';
 
 

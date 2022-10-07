@@ -29,14 +29,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRaw, computed } from "vue";
+import { ref, toRaw, computed ,inject} from "vue";
 import { Search } from "@element-plus/icons-vue";
 import { useRouter, useRoute } from "vue-router";
 import useStore from '@/store/index'
 
 const { userStore } = useStore()
 
-const user: any = userStore.user
+let user: any = userStore.user
+
+
 
 let avatar = computed(() => {
   if (user.avatar) {
@@ -85,11 +87,14 @@ const toLogin =()=>{
     name: 'Login'
   })
 }
-
+const reload = inject<Function>('reload') as Function
 const exit = (): void => {
   userStore.$reset()
-  localStorage.removeItem('pinia-User')
+  localStorage.removeItem('pinia-userStore')
 
+  reload()
+  console.log('exit');
+  
 }
 
 

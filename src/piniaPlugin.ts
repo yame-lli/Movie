@@ -7,30 +7,32 @@ type Option = {
     key?: string
 }
 
-const setStorage = (key: string, value: any): void => {
+const setStorage = (key: string, value: any) => {
     localStorage.setItem(key, JSON.stringify(value))
 }
 
 const getStorage = (key: string) => {
-    return localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key) as string) : {}
+    return JSON.parse(localStorage.getItem(key) as string)
 }
 
 const piniaPlugin = (option: Option) => {
     return (context: PiniaPluginContext) => {
         const { store } = context
-
-        const data = getStorage(`${option?.key ?? __piniaKey}-${store.$id}`)
+        let data = getStorage((option?.key ?? 'pinia') + `-${store.$id}`)
 
         store.$subscribe(() => {
-            setStorage(`${option?.key ?? __piniaKey}-${store.$id}`, toRaw(store.$state))
+            console.log(store.$id, 'change');
 
-        })
+            if (store.$id === 'userStore') {
+                setStorage((option?.key ?? 'pinia') + `-${store.$id}`, toRaw(store.$state))
+            }
+        }, { detached: true })
 
         return {
             ...data
         }
     }
-
 }
+
 
 export default piniaPlugin

@@ -1,16 +1,10 @@
 import { defineStore } from "pinia"
 import { apiLogin ,apiRegister } from '@/api/user'
-import { resolve } from "path"
-import { reject } from "lodash"
-
-type Res = {
-    code: number,
-    msg: string,
-    data: object
-}
 
 
-export const useUserStore = defineStore('User', {
+
+
+export const useUserStore = defineStore('userStore', {
     state: () => {
         return {
             user: {}
@@ -20,7 +14,6 @@ export const useUserStore = defineStore('User', {
     getters: {
 
     },
-
     actions: {
         async reqLogin(data: any) {
             let result = await apiLogin(data)
@@ -32,11 +25,12 @@ export const useUserStore = defineStore('User', {
                 return false                
             }
         },
-
         async reqRegister(data: any) {
-            let result = await apiRegister(data)
-            if (result.code == 200) {
-                this.user = result.data
+            let result =  await apiRegister(data)
+            console.log(result);
+            
+            if (result.code==200) {
+                this.user = result
                 return true
             }
             else {
